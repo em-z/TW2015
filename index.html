@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>MyPhotothèque</title>
+    <meta name="description" title="MyPhotothèque|index" />
+    <meta name="keywords" title="MyPhotothèque;tech;PHP;MySQL;Javascript;photo;" />
+    <link href="resources/index.css" rel="stylesheet" />
+    <script src="resources/index.js"></script>
+</head>
+<body onload="positioning();" onresize="positioning();">
+    <div id="titleLayer">
+        <div class="titleBox">
+            <div class="logoBox"><div><img src="resources/icon.jpg" class="titleLogo" /></div></div>
+            <div class="buttonBox">
+                <span><button style="margin-left:3px;">Photo</button><button>?</button><button>Recherche</button><button style="margin-right:3px;">Se connecte</button></span><!--button跳转-->
+            </div>
+        </div>
+    </div>
+    <div id="galleryBox">
+        <div class="outsideFrame">
+            <div class="galleryExplanation"></div>
+            <div id="gallerySelectorContainer">
+                <div id="selectorSelected"></div>
+                <div class="gallerySelector"></div>
+                <div class="gallerySelector"></div>
+                <div class="gallerySelector"></div>
+                <div class="gallerySelector"></div>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <div class="leftBox"><ul><li>123</li><li>456</li></ul></div>
+        <div class="centerBox"><ul><li>abc</li><li>def</li></ul></div>
+        <div class="rightBox"><ul><li>αβγ</li><li>δεζ</li></ul></div>
+    </div>
+    <div>
+        <div id="bottomLayer"></div>
+    </div>
+</body>
+</html>
