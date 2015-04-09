@@ -1,4 +1,9 @@
 <?php
+$db = array(
+	"db_address" => "localhost",
+	"db_username" => "root",
+	"db_password" => "root"
+);
 $Strings_EN = array(
 	"SignIn" => "Sign in",
 	"Login" => "Login",
