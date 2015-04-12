@@ -5,13 +5,13 @@ var Strings_EN = {
 }
 
 var Strings_FR = {
-    "err_username": "Username must begin with a letter and have at least 5 characters.",
-    "err_password": "Password must have at least 6 characters, and least a letter or symbol.",
-    "err_nickname": "Nickname must begin with a letter and have at least 5 characters.",
+    "err_username": "Le nom d'utilisateur doit commencer par une lettre et avoir au moins 5 caractÃ¨res",
+    "err_password": "Le mot de passe doit compter 6 caractÃ¨res et contenir au moins une lettre ou un symbole",
+    "err_nickname": "Le pseudo doit commencer par une lettre et avoir au moins 5 caractÃ¨res",
 }
 
 var Strings_CHS = {
-    "err_username": "ÓÃ»§Ãû±ØĞëÒÔ×ÖÄ¸¿ªÍ·²¢ÖÁÉÙÓµÓĞ5¸ö×Ö·û.",
-    "err_password": "ÃÜÂë³¤¶ÈÖÁÉÙÎª6²¢ÖÁÉÙÓµÓĞÒ»¸ö×ÖÄ¸»ò·ûºÅ.",
-    "err_nickname": "êÇ³Æ±ØĞëÒÔ×ÖÄ¸¿ªÍ·²¢ÖÁÉÙÓµÓĞ5¸ö×Ö·û.",
+    "err_username": "ç”¨æˆ·åå¿…é¡»ä»¥å­—æ¯å¼€å¤´å¹¶è‡³å°‘æ‹¥æœ‰5ä¸ªå­—ç¬¦.",
+    "err_password": "å¯†ç é•¿åº¦è‡³å°‘ä¸º6å¹¶è‡³å°‘æ‹¥æœ‰ä¸€ä¸ªå­—æ¯æˆ–ç¬¦å·.",
+    "err_nickname": "æ˜µç§°å¿…é¡»ä»¥å­—æ¯å¼€å¤´å¹¶è‡³å°‘æ‹¥æœ‰5ä¸ªå­—ç¬¦.",
 }
