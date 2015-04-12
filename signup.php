@@ -17,8 +17,10 @@
 		?></title>
 	<link rel="icon" href="resources/favicon.ico"/>
 	<script type="text/javascript" src="resources/general.js"></script>
+	<script type="text/javascript" src="resources/general.js"></script>
+	<script type="text/javascript" src='resources/Strings.js'></script>
 	<link rel="stylesheet" type="text/css" href="resources/signup.css"/>
-	<script src='resources/signup.js'></script>
+	<script type="text/javascript" src='resources/signup.js'></script>
 </head>
 <body onload="document.getElementById('browser_ver').value = getBrowserVersion()">
 <span id="signup"><?php
@@ -63,7 +65,8 @@ echo "&ref=" . $ref;
 			echo $Strings_CHS['Username'];
 			break;
 	}
-	?>" onkeyup="veri_username(this.id);" onblur="clearErrWindows()"/>
+	?>" onkeyup="veri_username(this.id);" onfocus="veri_username(this.id);" onkeydown="veri_username(this.id);"
+	       onblur="clearErrWindows()"/>
 
 	<div id="err"></div>
 	<br/>
@@ -79,7 +82,8 @@ echo "&ref=" . $ref;
 			echo $Strings_CHS['Password'];
 			break;
 	}
-	?>" onkeyup="veri_password(this.id);" onblur="clearErrWindows()"/>
+	?>" onkeyup="veri_password(this.id);" onfocus="veri_password(this.id);" onkeydown="veri_password(this.id);"
+	       onblur="clearErrWindows()"/>
 
 	<div id="err"></div>
 	<br/>
@@ -95,7 +99,8 @@ echo "&ref=" . $ref;
 			echo $Strings_CHS['Nickname'];
 			break;
 	}
-	?>" onkeyup="veri_nickname(this.id);" onblur="clearErrWindows()"/>
+	?>" onkeyup="veri_nickname(this.id);" onfocus="veri_nickname(this.id);" onkeydown="veri_nickname(this.id);"
+	       onblur="clearErrWindows()"/>
 
 	<div id="err"></div>
 	<br/>
@@ -113,7 +118,7 @@ echo "&ref=" . $ref;
 			echo $Strings_CHS['SignUp'];
 			break;
 	}
-	?>" disabled onkeyup="veri_all()"/>
+	?>" disabled/>
 </form>
 </div>
 <a id="index" href="https://github.com/Voyager2718/TW2015">TW2015</a>

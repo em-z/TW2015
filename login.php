@@ -19,8 +19,9 @@
 	<?php //add a md5 script
 	?>
 	<script type="text/javascript" src="resources/general.js"></script>
+	<script type="text/javascript" src='resources/login.js'></script>
+	<script type="text/javascript" src='resources/Strings.js'></script>
 	<link rel="stylesheet" type="text/css" href="resources/login.css"/>
-	<script src='resources/login.js'></script>
 </head>
 <body onload="document.getElementById('browser_ver').value = getBrowserVersion()">
 <span id="login"><?php

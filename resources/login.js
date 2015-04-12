@@ -17,7 +17,7 @@ function veri_username(id) {
 }
 function veri_password(id) {
     var un = document.getElementById(id);
-    if (un.value.length < 6 || un.value.length > 16) {
+    if (un.value.length < 6 || un.value.length > 16 || un.value == "111111" || un.value == "123456" || un.value == "000000" || un.value == "password" || isDigit(un.value)) {
         un.style.backgroundColor = bg_color;
         verified[1] = false;
     }
@@ -32,14 +32,14 @@ function veri_password(id) {
 }
 
 function isRegisterUserName(s) {
-    var patrn = /^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){4,15}$/;
+    var patrn = /^[a-zA-Z]{1}([a-zA-Z0-9]|[_]){4,16}$/;
     if (!patrn.exec(s))
         return false;
     return true
 }
 
 function isDigit(s) {
-    var patrn = /^[0-9]{1,15}$/;
+    var patrn = /^[0-9]{1,16}$/;
     if (!patrn.exec(s))
         return false;
     return true
