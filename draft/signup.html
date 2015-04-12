@@ -1,0 +1,27 @@
+﻿
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Sign up</title>
+    <link rel="icon" href="resources/favicon.ico" />
+    <script type="text/javascript" src="resources/general.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/signup.css" />
+    <script src='resources/signup.js'></script>
+</head>
+<body onload="document.getElementById('browser_ver').value = getBrowserVersion();">
+    <span id="signup">Sign up</span>
+    <a style="font-size: 20px;" href="Acc.php?type=login&ref=http://localhost/tw2015/abc.html">or Log in</a>
+    <div class=" signin_frame">
+        <form action="Acc_h.php?type=signup&ref=http://localhost/tw2015/abc.html" method="post">
+            <input class="textbox" id="username" name="username" type="text" maxlength="16" placeholder="Username" onkeyup="veri_username(this.id);" onblur="    clearErrWindows()" /><div id="err"></div><br />
+            <input class="textbox" id="password" name="password" type="password" maxlength="16" placeholder="Password" onkeyup="veri_password(this.id);" onblur="    clearErrWindows()" /><br />
+            <input class="textbox" id="nickname" name="nickname" type="text" maxlength="16" placeholder="Nickname" onkeyup="veri_nickname(this.id);" onblur="    clearErrWindows()" /><br />
+            <input id="browser_ver" name="browser_ver" type="text" readonly maxlength="64"
+                   style="position: absolute; left: 0px; top: 0px; opacity: 0;" />
+            <input id="signinbutton" type="submit" value="Sign up" disabled onkeyup="veri_all()" />
+        </form>
+    </div>
+    <a id="index" href="https://github.com/Voyager2718/TW2015">TW2015</a>
+</body>
+</html>
