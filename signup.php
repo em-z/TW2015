@@ -1,47 +1,121 @@
-<?php
-include "resources/strings.php";
-header("Content-Type: text/html;charset=utf-8");
-session_start();
-$_SESSION['login'] = NULL;
-
-if (!isset($_POST['username']) || !isset($_POST['password']) || !isset($_POST['nickname']) || !isset($_POST['browser_ver']))
-	die ($Strings_EN['err_string_null'] . "");
-$username = $_POST['username'];
-$password = $_POST['password'];
-$nickname = $_POST['nickname'];
-$browser_ver = $_POST['browser_ver'];
-if (!isset($_GET['lan']) || ($_GET['lan'] != "EN" || $_GET['lan'] != "FR" || $_GET['lan'] != "CNS"))
-	$language = "EN";
-else
-	$language = $_GET['lan'];
-
-$con = mysql_connect($db['db_address'], $db['db_username'], $db['db_password']);
-mysql_query("SET NAMES utf8");
-if (!$con) {
-	die($db['db_err_connect'] . mysql_error()) . ".";
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8"/>
+	<title><?php
+		switch ($lan) {
+			case "EN":
+				echo $Strings_EN['SignUp'];
+				break;
+			case "FR":
+				echo $Strings_FR['SignUp'];
+				break;
+			case "CHS":
+				echo $Strings_CHS['SignUp'];
+				break;
+		}
+		?></title>
+	<link rel="icon" href="resources/favicon.ico"/>
+	<script type="text/javascript" src="resources/general.js"></script>
+	<link rel="stylesheet" type="text/css" href="resources/signup.css"/>
+	<script src='resources/signup.js'></script>
+</head>
+<body onload="document.getElementById('browser_ver').value = getBrowserVersion()">
+<span id="signup"><?php
+	switch ($lan) {
+		case "EN":
+			echo $Strings_EN['SignUp'];
+			break;
+		case "FR":
+			echo $Strings_FR['SignUp'];
+			break;
+		case "CHS":
+			echo $Strings_CHS['SignUp'];
+			break;
+	}
+	?></span>
+<a style="font-size: 20px;" href="<?php
+switch ($lan) {
+	case "EN":
+		echo "Acc.php?type=login&ref=" . $ref . "\">or " . $Strings_EN['Login'];
+		break;
+	case "FR":
+		echo "Acc.php?type=login&lan=FR&ref=" . $ref . "\">ou " . $Strings_FR['Login'];
+		break;
+	case "CHS":
+		echo "Acc.php?type=login&lan=CHS&ref=" . $ref . "\">或 " . $Strings_CHS['Login'];
+		break;
 }
+?></a>
+<div class=" signin_frame">
+<form action="Acc_h.php?type=signup<?php
+echo "&ref=" . $ref;
+?>" method="post">
+	<input class="textbox" id="username" name="username" type="text" maxlength="16" placeholder="<?php
+	switch ($lan) {
+		case "EN":
+			echo $Strings_EN['Username'];
+			break;
+		case "FR":
+			echo $Strings_FR['Username'];
+			break;
+		case "CHS":
+			echo $Strings_CHS['Username'];
+			break;
+	}
+	?>" onkeyup="veri_username(this.id);" onblur="clearErrWindows()"/>
 
-if ($username == '' || $password == '' || $nickname == '') {//账户要求没具体设定
-	echo $Strings_EN['err_format'];
-	exit();
-}
-mysql_select_db($db['db'], $con);
-$query = sprintf("SELECT * FROM staffs WHERE username='%s'", mysql_real_escape_string($username));
-$result = mysql_query($query);
-$arr = mysql_fetch_array($result);
-if ($arr['username'] == $username) {
-	echo $Strings_EN['err_username_exist'];
-	exit();
-}
-$ip = $_SERVER['REMOTE_ADDR'];//↓数据库行需要被修改
-$query = sprintf("INSERT INTO '%s' (`username`, `password`, `nickname`, `add`, `ip_addr`, `browser_ver`) VALUES ('%s','%s','%s','%s','%s','%s')", mysql_real_escape_string($db['db_users']), mysql_real_escape_string($username), mysql_real_escape_string($password), mysql_real_escape_string($nickname), mysql_real_escape_string($add), mysql_real_escape_string($ip), mysql_real_escape_string($browser_ver));
-mysql_query($query);
-$query = sprintf("SELECT * FROM '%s' WHERE `username`='%s'", mysql_real_escape_string($db['db_user']), mysql_real_escape_string($username));
-$result = mysql_query($query);
-$arr = mysql_fetch_array($result);
-$_SESSION['login'] = $username;
-$_SESSION['username'] = $username;
-$_SESSION['UID'] = $arr['UID'];
-$_SESSION['nickname'] = $nickname;
-echo $Strings_EN['success_register'];//调用Javascript返回首页
-?>
+	<div id="err"></div>
+	<br/>
+	<input class="textbox" id="password" name="password" type="password" maxlength="16" placeholder="<?php
+	switch ($lan) {
+		case "EN":
+			echo $Strings_EN['Password'];
+			break;
+		case "FR":
+			echo $Strings_FR['Password'];
+			break;
+		case "CHS":
+			echo $Strings_CHS['Password'];
+			break;
+	}
+	?>" onkeyup="veri_password(this.id);" onblur="clearErrWindows()"/>
+
+	<div id="err"></div>
+	<br/>
+	<input class="textbox" id="nickname" name="nickname" type="text" maxlength="16" placeholder="<?php
+	switch ($lan) {
+		case "EN":
+			echo $Strings_EN['Nickname'];
+			break;
+		case "FR":
+			echo $Strings_FR['Nickname'];
+			break;
+		case "CHS":
+			echo $Strings_CHS['Nickname'];
+			break;
+	}
+	?>" onkeyup="veri_nickname(this.id);" onblur="clearErrWindows()"/>
+
+	<div id="err"></div>
+	<br/>
+	<input id="browser_ver" name="browser_ver" type="text" readonly maxlength="64"
+	       style="position: absolute; left: 0px; top: 0px; opacity: 0;"/>
+	<input id="signinbutton" type="submit" value="<?php
+	switch ($lan) {
+		case "EN":
+			echo $Strings_EN['SignUp'];
+			break;
+		case "FR":
+			echo $Strings_FR['SignUp'];
+			break;
+		case "CHS":
+			echo $Strings_CHS['SignUp'];
+			break;
+	}
+	?>" disabled onkeyup="veri_all()"/>
+</form>
+</div>
+<a id="index" href="https://github.com/Voyager2718/TW2015">TW2015</a>
+</body>
+</html>

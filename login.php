@@ -1,49 +1,114 @@
-<?php
-header("Content-Type: text/html;charset=utf-8");
-session_start();
-$_SESSION['login'] = NULL;
-$con = mysql_connect("localhost", "staffs", "35F966C3FD71ADC2");
-
-if (!$con) {
-	die('数据库连接出错，错误代码：' . mysql_error()) . ".";
-}
-mysql_query("SET NAMES utf8");
-$username = $_POST['username'];
-$password = $_POST['password'];
-$browser_ver = $_POST['browser_ver'];
-if ($username == '' || $password == '') {
-	echo "<script>alert('用户名或密码不能为空.');self.location.href='login.html';</script>";
-	exit();
-} else {
-	mysql_select_db("ChangleTech", $con);
-	$query = sprintf("SELECT * FROM staffs WHERE username='%s' AND BINARY password='%s'", mysql_real_escape_string($username), mysql_real_escape_string($password));
-	$result = mysql_query($query);
-	$row = mysql_fetch_array($result);
-	if ($row['username'] == $username && $row['password'] == $password) {
-		if ($row['blocked'] == 1) {
-			echo "<script>alert('账户被冻结，请联系管理员.');self.location.href='login.html';</script>";
-			exit();
-		} else {
-			$_SESSION[login] = $username;
-			$_SESSION['username'] = $username;
-			$_SESSION['rights'] = $row['rights'];
-			$_SESSION['nickname'] = $row['nickname'];
-			$_SESSION['UID'] = $row['UID'];
-			$UID = $row['UID'];
-			$ip = $_SERVER['REMOTE_ADDR'];
-			mysql_query("UPDATE `ChangleTech`.`staffs` SET `ip_addr` = '$ip' WHERE staffs.UID = '$UID'");
-			$query2 = sprintf("UPDATE `ChangleTech`.`staffs` SET `browser_ver` = '%s' WHERE `staffs`.`UID` = '$UID';", mysql_real_escape_string($browser_ver));
-			mysql_query("UPDATE `ChangleTech`.`staffs` SET `browser_ver` = '$browser_ver' WHERE `staffs`.`UID` = '$UID';");
-			if ($row['rights'] <= 3) {
-				echo "<script>self.location.href='management.php'</script>";
-				exit();
-			} else {
-				echo "<p>登陆成功，即将返回首页.</p><script>self.location.href='http://changletech.com';</script>";
-				exit();
-			}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8"/>
+	<title><?php
+		switch ($lan) {
+			case "EN":
+				echo $Strings_EN['Login'];
+				break;
+			case "FR":
+				echo $Strings_FR['Login'];
+				break;
+			case "CHS":
+				echo $Strings_CHS['Login'];
+				break;
 		}
-	} else {
-		echo "<script>alert('用户名或密码错误.');self.location.href='login.html';</script>";
+		?></title>
+	<link rel="icon" href="resources/favicon.ico"/>
+	<?php //add a md5 script
+	?>
+	<script type="text/javascript" src="resources/general.js"></script>
+	<link rel="stylesheet" type="text/css" href="resources/login.css"/>
+	<script src='resources/login.js'></script>
+</head>
+<body onload="document.getElementById('browser_ver').value = getBrowserVersion()">
+<span id="login"><?php
+	switch ($lan) {
+		case "EN":
+			echo $Strings_EN['Login'];
+			break;
+		case "FR":
+			echo $Strings_FR['Login'];
+			break;
+		case "CHS":
+			echo $Strings_CHS['Login'];
+			break;
 	}
+	?></span>
+<a style="font-size: 20px;" href="<?php
+switch ($lan) {
+	case "EN":
+		echo "Acc.php?ref=" . $ref . "\">or " . $Strings_EN['SignUp'];
+		break;
+	case "FR":
+		echo "Acc.php?lan=FR&ref=" . $ref . "\">ou " . $Strings_FR['SignUp'];
+		break;
+	case "CHS":
+		echo "Acc.php?lan=CHS&ref=" . $ref . "\">或 " . $Strings_CHS['SignUp'];
+		break;
 }
-?>
+?></a>
+<div class=" login_frame">
+<form action="Acc_h.php?type=login<?php
+echo "&ref=" . $ref;
+?>" method="post">
+	<input class="textbox" id="username" name="username" type="text" maxlength="16" placeholder="<?php
+	switch ($lan) {
+		case "EN":
+			echo $Strings_EN['Username'];
+			break;
+		case "FR":
+			echo $Strings_FR['Username'];
+			break;
+		case "CHS":
+			echo $Strings_CHS['Username'];
+			break;
+	}
+	?>" onkeyup="veri_username(this.id);"/>
+	<input class="textbox" id="password" name="password" type="password" maxlength="16" placeholder="<?php
+	switch ($lan) {
+		case "EN":
+			echo $Strings_EN['Password'];
+			break;
+		case "FR":
+			echo $Strings_FR['Password'];
+			break;
+		case "CHS":
+			echo $Strings_CHS['Password'];
+			break;
+	}
+	?>" onkeyup=" veri_password(this.id);"/>
+	<input id="browser_ver" name="browser_ver" type="text" readonly
+	       style="position: absolute; left: 0px; top: 0px; opacity: 0;"/>
+	<input id="loginbutton" type="submit" value="<?php
+	switch ($lan) {
+		case "EN":
+			echo $Strings_EN['Login'];
+			break;
+		case "FR":
+			echo $Strings_FR['Login'];
+			break;
+		case "CHS":
+			echo $Strings_CHS['Login'];
+			break;
+	}
+	?>" disabled/>
+</form>
+</div>
+<a id="forgot" href="forgot.html"><?php
+	switch ($lan) {
+		case "EN":
+			echo $Strings_EN['ForgetPassword'];
+			break;
+		case "FR":
+			echo $Strings_FR['ForgetPassword'];
+			break;
+		case "CHS":
+			echo $Strings_CHS['ForgetPassword'];
+			break;
+	}
+	?></a>
+<a id="index" href="https://github.com/Voyager2718/TW2015"">TW2015</a>
+</body>
+</html>
