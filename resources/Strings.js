@@ -5,9 +5,9 @@ var Strings_EN = {
 }
 
 var Strings_FR = {
-    "err_username": "Le nom d'utilisateur doit commencer par une lettre et avoir au moins 5 caractères",
-    "err_password": "Le mot de passe doit compter 6 caractères et contenir au moins une lettre ou un symbole",
-    "err_nickname": "Le pseudo doit commencer par une lettre et avoir au moins 5 caractères",
+    "err_username": "Le nom d'utilisateur doit commencer par une lettre et avoir au moins 5 caractères.",
+    "err_password": "Le mot de passe doit compter 6 caractères et contenir au moins une lettre ou un symbole.",
+    "err_nickname": "Le pseudo doit commencer par une lettre et avoir au moins 5 caractères.",
 }
 
 var Strings_CHS = {
