@@ -27,21 +27,21 @@ $Strings_EN = array(
 );
 
 $Strings_FR = array(
-	"SignUp" => "Sign up",
-	"Login" => "Log in",
-	"Search" => "Search",
+	"SignUp" => "Inscription",
+	"Login" => "Connexion",
+	"Search" => "Recherche",
 	"EN" => "English",
 	"FR" => "français",
 	"CN" => "中文",
-	"Home" => "Home",
-	"err_string_null" => "You need to fill in all the blanks or enable Javascript.",
-	"err_format" => "Username or password or nickname format error.",
-	"err_username_exist" => "Username already exist.",
-	"success_register" => "Register success! Will be redirect to the homepage soon.",
-	"ForgetPassword" => "Forget password",
-	"Username" => "Username",
-	"Password" => "Password",
-	"Nickname" => "Nickname",
+	"Home" => "Page d'accueil",
+	"err_string_null" => "Vous devez remplir tous les blancs ou activez le Javascript.",
+	"err_format" => "Nom d'utilisateur ou mot de passe incorrect.",
+	"err_username_exist" => "L'identifiant n'existe pas.",
+	"success_register" => "Enregistrement avec succés! Vous allez bientôt être redirigé vers la page d'accueil. ",
+	"ForgetPassword" => "Mot de passe oublié",
+	"Username" => "Identifiant",
+	"Password" => "Mot de passe",
+	"Nickname" => "Pseudo",
 );
 
 $Strings_CHS = array(
